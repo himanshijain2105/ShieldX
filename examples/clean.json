@@ -1,0 +1,234 @@
+{
+  "case_id": "case_clean_ex",
+  "layout": {
+    "canonical_steps": [
+      "fetch",
+      "deps",
+      "compile",
+      "test",
+      "package",
+      "scan",
+      "sign",
+      "publish"
+    ],
+    "authorized_signers": {
+      "fetch": [
+        "alice"
+      ],
+      "deps": [
+        "alice"
+      ],
+      "compile": [
+        "bob"
+      ],
+      "test": [
+        "bob"
+      ],
+      "package": [
+        "carol"
+      ],
+      "scan": [
+        "carol"
+      ],
+      "sign": [
+        "dave"
+      ],
+      "publish": [
+        "dave"
+      ]
+    },
+    "expected_products": {
+      "fetch": [
+        "src.tar.gz"
+      ],
+      "deps": [
+        "vendor.tar.gz"
+      ],
+      "compile": [
+        "app.o"
+      ],
+      "test": [
+        "test.log"
+      ],
+      "package": [
+        "app.tar.gz"
+      ],
+      "scan": [
+        "scan.json"
+      ],
+      "sign": [
+        "app.tar.gz.sig"
+      ],
+      "publish": [
+        "release.tar.gz"
+      ]
+    },
+    "expected_product_hashes": {
+      "fetch": {
+        "src.tar.gz": "30dda8ebd60a3732bb8888f1dd385c11bf8581e1b887edc5d0f0e99f578ee46a"
+      },
+      "deps": {
+        "vendor.tar.gz": "32d26b1b940aca6332532b777c0f53f5abc2ec4f0320c7ea14bec5569638ce69"
+      },
+      "compile": {
+        "app.o": "2776fa821dac20d4296ff118759523108be5950b92a81a94fbb4e56246e7c481"
+      },
+      "test": {
+        "test.log": "ab81badb7678c0c2f6ac8ef0fcc59e42f907ca221d7e4429993f6b3f86d8ddfa"
+      },
+      "package": {
+        "app.tar.gz": "355b653a5a0c39cb709b727acf4d155becd1455073fb99f306414cf66dff49d0"
+      },
+      "scan": {
+        "scan.json": "d7256a4c8f8c95a9ff2c5939ac2bc3fadd9815f1948385d979e0507b1f5bdafb"
+      },
+      "sign": {
+        "app.tar.gz.sig": "4e4f973bbeb1b9596173c5468b8b7b60113673a209350151a5c51a6a09eb1e4c"
+      },
+      "publish": {
+        "release.tar.gz": "13bc3430693788ebe3624d0f934a0d6c7e7364b2796b3b3d01d60bcac9b70511"
+      }
+    }
+  },
+  "public_verification_material": {
+    "public_keys": {
+      "alice": "9552f61ea0666b012dfe405d193ae8f803775f6b5709d22d3b7483ca4099067e",
+      "bob": "7a89174e1708fb0042a3c18c76daea45ce9cf28b46b966ff7965d1c2ceba07dc",
+      "carol": "998f75ea51e02540719199bf7af6c004fb7503c16f8cc0210984723fe3a3fdef",
+      "dave": "4f334a5150036f7581bbdc6a0138f14be01289034805df690b141ba4b74ebb85"
+    }
+  },
+  "steps": [
+    {
+      "step_id": "fetch",
+      "signer_id": "alice",
+      "signature": "370a50d6606e4ca6b28a02ce23b5ab3f884c3a29b90f8af84da7ffe35e00ce696f5b286da3fbbfdb2b5e17d130af9c034f0e855982d33a7ba4e1300fa1c0660b",
+      "materials": [],
+      "products": [
+        {
+          "name": "src.tar.gz",
+          "hash": "30dda8ebd60a3732bb8888f1dd385c11bf8581e1b887edc5d0f0e99f578ee46a"
+        }
+      ]
+    },
+    {
+      "step_id": "deps",
+      "signer_id": "alice",
+      "signature": "d3d795243641e04bee3268921270cfeb59e785c4d31a27458b1132499fae4b967734b5e8c45f8d2656d85fce0b96d7f93ad61f86a5eb498578cb0c966ea37105",
+      "materials": [
+        {
+          "name": "src.tar.gz",
+          "hash": "30dda8ebd60a3732bb8888f1dd385c11bf8581e1b887edc5d0f0e99f578ee46a"
+        }
+      ],
+      "products": [
+        {
+          "name": "vendor.tar.gz",
+          "hash": "32d26b1b940aca6332532b777c0f53f5abc2ec4f0320c7ea14bec5569638ce69"
+        }
+      ]
+    },
+    {
+      "step_id": "compile",
+      "signer_id": "bob",
+      "signature": "ef91e5bc345d7a166e0d0c5ce194cbca7c872298f26e81b97a51ec721c0b1350912b65776ff6d6da703e763c88d4e44fe7fbda5c5a802c37bf69c620ee763f07",
+      "materials": [
+        {
+          "name": "vendor.tar.gz",
+          "hash": "32d26b1b940aca6332532b777c0f53f5abc2ec4f0320c7ea14bec5569638ce69"
+        }
+      ],
+      "products": [
+        {
+          "name": "app.o",
+          "hash": "2776fa821dac20d4296ff118759523108be5950b92a81a94fbb4e56246e7c481"
+        }
+      ]
+    },
+    {
+      "step_id": "test",
+      "signer_id": "bob",
+      "signature": "a0194428501cb6bb4034efd2aaadf0c9842cfee7f0c12f516a3a7485a8c3382dbedab3f242470abb6a00ec66e02a41340234bc9e59fad6b401a08d7170dfd50d",
+      "materials": [
+        {
+          "name": "app.o",
+          "hash": "2776fa821dac20d4296ff118759523108be5950b92a81a94fbb4e56246e7c481"
+        }
+      ],
+      "products": [
+        {
+          "name": "test.log",
+          "hash": "ab81badb7678c0c2f6ac8ef0fcc59e42f907ca221d7e4429993f6b3f86d8ddfa"
+        }
+      ]
+    },
+    {
+      "step_id": "package",
+      "signer_id": "carol",
+      "signature": "3a86ca432ae5a066dd7f9b4183716ba2e60e30d2e5ff5447a59ba37085b5806edb6c6b4ac7b68f0f8d82ae44affeededd4c1e7e5bd4a5efbfa12c9018e571d05",
+      "materials": [
+        {
+          "name": "test.log",
+          "hash": "ab81badb7678c0c2f6ac8ef0fcc59e42f907ca221d7e4429993f6b3f86d8ddfa"
+        }
+      ],
+      "products": [
+        {
+          "name": "app.tar.gz",
+          "hash": "355b653a5a0c39cb709b727acf4d155becd1455073fb99f306414cf66dff49d0"
+        }
+      ]
+    },
+    {
+      "step_id": "scan",
+      "signer_id": "carol",
+      "signature": "a9f8a4932291916fc89c183b30d784e7a72af8a64261f5e1330ff3854ee8414da47ffeae4b5b6914fe340385c2e36cec5337c14728e9c16d16fa37d027684704",
+      "materials": [
+        {
+          "name": "app.tar.gz",
+          "hash": "355b653a5a0c39cb709b727acf4d155becd1455073fb99f306414cf66dff49d0"
+        }
+      ],
+      "products": [
+        {
+          "name": "scan.json",
+          "hash": "d7256a4c8f8c95a9ff2c5939ac2bc3fadd9815f1948385d979e0507b1f5bdafb"
+        }
+      ]
+    },
+    {
+      "step_id": "sign",
+      "signer_id": "dave",
+      "signature": "58e029f3f009d465265643b38b7cc66bd02a488864857f7038b92549b0ae9f7bd810b90d7135d91951686b3bfdd977fde8d6e99be692014a5e9f7f6b7a45930f",
+      "materials": [
+        {
+          "name": "scan.json",
+          "hash": "d7256a4c8f8c95a9ff2c5939ac2bc3fadd9815f1948385d979e0507b1f5bdafb"
+        }
+      ],
+      "products": [
+        {
+          "name": "app.tar.gz.sig",
+          "hash": "4e4f973bbeb1b9596173c5468b8b7b60113673a209350151a5c51a6a09eb1e4c"
+        }
+      ]
+    },
+    {
+      "step_id": "publish",
+      "signer_id": "dave",
+      "signature": "b7626c6ac751c0752e360d457b1aa349e7c01c0dcc65fbb67ba173c1bcf5e807c683c7839b20734764c4d6e01af8e07dd5dd7a192c51327dc11831bdf0f45e0c",
+      "materials": [
+        {
+          "name": "app.tar.gz.sig",
+          "hash": "4e4f973bbeb1b9596173c5468b8b7b60113673a209350151a5c51a6a09eb1e4c"
+        }
+      ],
+      "products": [
+        {
+          "name": "release.tar.gz",
+          "hash": "13bc3430693788ebe3624d0f934a0d6c7e7364b2796b3b3d01d60bcac9b70511"
+        }
+      ]
+    }
+  ]
+}
